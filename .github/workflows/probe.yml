@@ -6,8 +6,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-26, macos-26-intel]
+        n: [1,2,3,4,5,6,7,8,9,10]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
+    name: probe (${{ matrix.os }} #${{ matrix.n }})
     steps:
       - name: info
         run: |
@@ -18,3 +20,4 @@ jobs:
           sysctl -n hw.ncpu hw.memsize
           echo "ImageOS=$ImageOS ImageVersion=$ImageVersion"
           echo "runner=$RUNNER_NAME"
+          sleep 60
